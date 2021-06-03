@@ -10,6 +10,10 @@ class ContactForm extends Component {
     number: '',
   };
 
+  componentDidMount() {
+    this.props.fetchContacts();
+  }
+
   handleChange = event => {
     const { name, value } = event.currentTarget;
     this.setState({ [name]: value });
@@ -83,5 +87,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   onSubmit: ({ name, number }) =>
     dispatch(contactsOperations.addContacts({ name, number })),
+  fetchContacts: () => dispatch(contactsOperations.fetchContacts()),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);

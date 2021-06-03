@@ -17,11 +17,8 @@ const fetchContacts = () => dispatch => {
   dispatch(fetchContactsRequest());
   axios
     .get('/contacts')
-    .then(({ data }) =>
-      dispatch(fetchContactsSuccess(data)).catch(error =>
-        dispatch(fetchContactsError(error)),
-      ),
-    );
+    .then(({ data }) => dispatch(fetchContactsSuccess(data)))
+    .catch(error => dispatch(fetchContactsError(error)));
 };
 
 const addContacts =

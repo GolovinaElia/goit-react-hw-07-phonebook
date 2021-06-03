@@ -37,7 +37,6 @@ const mapStateToProps = ({ contacts: { items, filter } }) => ({
 });
 const mapDispatchToProps = dispatch => ({
   onDeleteContact: id => dispatch(contactsOperations.deleteContact(id)),
-  fetchContacts: () => dispatch(contactsOperations.fetchContacts()),
 });
 
 ContactsList.propTypes = {
