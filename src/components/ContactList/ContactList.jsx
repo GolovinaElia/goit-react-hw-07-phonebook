@@ -2,7 +2,7 @@ import style from './ContactList.module.css';
 import { v4 as uuidv4 } from 'uuid';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import contactsActions from '../../redux/contacts/contacts-actions';
+import contactsOperations from '../../redux/contacts/contacts-operations';
 
 const ContactsList = ({ contacts, onDeleteContact }) => (
   <div className={style.contacts}>
@@ -36,7 +36,8 @@ const mapStateToProps = ({ contacts: { items, filter } }) => ({
   contacts: getVisibleContact(items, filter),
 });
 const mapDispatchToProps = dispatch => ({
-  onDeleteContact: id => dispatch(contactsActions.deleteContacts(id)),
+  onDeleteContact: id => dispatch(contactsOperations.deleteContact(id)),
+  fetchContacts: () => dispatch(contactsOperations.fetchContacts()),
 });
 
 ContactsList.propTypes = {
