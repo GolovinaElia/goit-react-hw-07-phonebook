@@ -3,6 +3,7 @@ import style from './ContactForm.module.css';
 import { v4 as uuidv4 } from 'uuid';
 import { connect } from 'react-redux';
 import contactsOperations from '../../redux/contacts/contacts-operations';
+import Loader from '../Loader/Loader';
 
 class ContactForm extends Component {
   state = {
@@ -71,6 +72,7 @@ class ContactForm extends Component {
               onChange={this.handleChange}
             />
           </label>
+          {this.props.isLoadingContacts && <Loader />}
           <button className={style.button} type="submit">
             Add contact
           </button>
@@ -82,6 +84,7 @@ class ContactForm extends Component {
 
 const mapStateToProps = state => ({
   contacts: state.contacts.items,
+  isLoadingContacts: state.contacts.loading,
 });
 
 const mapDispatchToProps = dispatch => ({
