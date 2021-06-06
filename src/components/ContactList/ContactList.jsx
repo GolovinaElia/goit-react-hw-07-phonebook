@@ -2,7 +2,7 @@ import style from './ContactList.module.css';
 import { v4 as uuidv4 } from 'uuid';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { contactsOperations, contactsSelectors } from '../../redux/index';
+import { contactsOperations, contactsSelectors } from '../../redux/contacts';
 
 const ContactsList = ({ contacts, onDeleteContact }) => (
   <div className={style.contacts}>

@@ -1,5 +1,5 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
-import { contactsReducer } from './index';
+import { contactsReducer } from './contacts';
 import {
   FLUSH,
   REHYDRATE,

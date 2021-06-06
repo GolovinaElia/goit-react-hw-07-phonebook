@@ -3,7 +3,7 @@ import style from './ContactForm.module.css';
 import { v4 as uuidv4 } from 'uuid';
 import { connect } from 'react-redux';
 import Loader from '../Loader/Loader';
-import { contactsOperations, contactsSelectors } from '../../redux/index';
+import { contactsOperations, contactsSelectors } from '../../redux/contacts';
 
 class ContactForm extends Component {
   state = {
