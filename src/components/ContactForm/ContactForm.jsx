@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import style from './ContactForm.module.css';
 import { v4 as uuidv4 } from 'uuid';
 import { connect } from 'react-redux';
-import contactsOperations from '../../redux/contacts/contacts-operations';
 import Loader from '../Loader/Loader';
+import { contactsOperations, contactsSelectors } from '../../redux/index';
 
 class ContactForm extends Component {
   state = {
@@ -23,9 +23,9 @@ class ContactForm extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const { name, number } = this.state;
-    const { contacts } = this.props;
+    const { contactsAll } = this.props;
     const contact = { id: uuidv4(), name: name, number: number };
-    const inputName = contacts.find(
+    const inputName = contactsAll.find(
       contact => contact.name.toLowerCase() === name.toLowerCase(),
     );
     if (inputName) {
@@ -83,8 +83,8 @@ class ContactForm extends Component {
 }
 
 const mapStateToProps = state => ({
-  contacts: state.contacts.items,
-  isLoadingContacts: state.contacts.loading,
+  contactsAll: contactsSelectors.contactsAll(state),
+  isLoadingContacts: contactsSelectors.isLoadingContacts(state),
 });
 
 const mapDispatchToProps = dispatch => ({

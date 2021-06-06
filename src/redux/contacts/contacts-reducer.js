@@ -12,6 +12,7 @@ import {
   deleteContactError,
   changeFilter,
 } from './contacts-actions';
+import NotFoundView from '../../components/NotFoundView/NoFoundView';
 
 const items = createReducer([], {
   [fetchContactsSuccess]: (_, { payload }) => payload,
@@ -35,7 +36,8 @@ const loading = createReducer(false, {
 const filter = createReducer('', {
   [changeFilter]: (_, { payload }) => payload,
 });
-const error = createReducer(null, {});
+const error = createReducer(null, { NotFoundView });
+
 export default combineReducers({
   items,
   filter,

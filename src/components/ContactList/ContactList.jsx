@@ -2,7 +2,7 @@ import style from './ContactList.module.css';
 import { v4 as uuidv4 } from 'uuid';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import contactsOperations from '../../redux/contacts/contacts-operations';
+import { contactsOperations, contactsSelectors } from '../../redux/index';
 
 const ContactsList = ({ contacts, onDeleteContact }) => (
   <div className={style.contacts}>
@@ -25,15 +25,8 @@ const ContactsList = ({ contacts, onDeleteContact }) => (
   </div>
 );
 
-const getVisibleContact = (allContacts, filter) => {
-  const normalizedFilter = filter.toLowerCase();
-  return allContacts.filter(contact =>
-    contact.name.toLowerCase().includes(normalizedFilter),
-  );
-};
-
-const mapStateToProps = ({ contacts: { items, filter } }) => ({
-  contacts: getVisibleContact(items, filter),
+const mapStateToProps = state => ({
+  contacts: contactsSelectors.getVisibleContact(state),
 });
 const mapDispatchToProps = dispatch => ({
   onDeleteContact: id => dispatch(contactsOperations.deleteContact(id)),
